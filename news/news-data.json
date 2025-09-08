@@ -1,0 +1,68 @@
+[
+    {
+        "id": 1,
+        "title": "Cập nhật phiên bản 2.5.0 - Thêm nhiều tính năng mới",
+        "excerpt": "Phiên bản mới mang đến nhiều nghề nghiệp mới, xe cộ mới và cải thiện hiệu suất. Khám phá thế giới RP đầy màu sắc với những trải nghiệm hoàn toàn mới.",
+        "content": "Chúng tôi vui mừng thông báo về việc ra mắt phiên bản 2.5.0 với nhiều cập nhật quan trọng...",
+        "category": "Cập nhật",
+        "date": "2025-01-15",
+        "author": "Admin Team",
+        "featured": true,
+        "tags": ["update", "features", "vehicles", "jobs"]
+    },
+    {
+        "id": 2,
+        "title": "Sự kiện Tết Nguyên Đán 2025",
+        "excerpt": "Tham gia sự kiện đặc biệt với nhiều phần thưởng hấp dẫn dịp Tết Nguyên Đán. Nhiều hoạt động thú vị đang chờ đón bạn!",
+        "content": "Nhân dịp Tết Nguyên Đán 2025, Panda City tổ chức sự kiện đặc biệt với nhiều hoạt động hấp dẫn...",
+        "category": "Sự kiện",
+        "date": "2025-01-10",
+        "author": "Event Team",
+        "featured": false,
+        "tags": ["event", "tet", "rewards", "community"]
+    },
+    {
+        "id": 3,
+        "title": "Hướng dẫn nghề Taxi Driver mới nhất",
+        "excerpt": "Tìm hiểu cách trở thành tài xế taxi chuyên nghiệp trong Panda City. Hướng dẫn chi tiết từ A đến Z.",
+        "content": "Nghề tài xế taxi là một trong những nghề phổ biến nhất tại Panda City...",
+        "category": "Hướng dẫn",
+        "date": "2025-01-08",
+        "author": "Community Manager",
+        "featured": false,
+        "tags": ["guide", "taxi", "job", "tutorial"]
+    },
+    {
+        "id": 4,
+        "title": "Khai trương khu vực Downtown mới",
+        "excerpt": "Khám phá khu vực downtown với nhiều cửa hàng và hoạt động mới. Một thế giới RP hoàn toàn mới đang chờ bạn!",
+        "content": "Khu vực Downtown mới đã chính thức mở cửa với nhiều tiện ích và hoạt động thú vị...",
+        "category": "Tin tức",
+        "date": "2025-01-05",
+        "author": "Development Team",
+        "featured": true,
+        "tags": ["downtown", "new area", "shops", "activities"]
+    },
+    {
+        "id": 5,
+        "title": "Cuộc thi Screenshot tháng 1/2025",
+        "excerpt": "Tham gia cuộc thi chụp ảnh đẹp nhất để giành giải thưởng giá trị. Thể hiện kỹ năng nhiếp ảnh của bạn!",
+        "content": "Cuộc thi Screenshot tháng 1/2025 chính thức bắt đầu với những giải thưởng hấp dẫn...",
+        "category": "Cuộc thi",
+        "date": "2025-01-03",
+        "author": "Community Team",
+        "featured": false,
+        "tags": ["contest", "screenshot", "photography", "prizes"]
+    },
+    {
+        "id": 6,
+        "title": "Thông báo bảo trì server định kỳ",
+        "excerpt": "Server sẽ được bảo trì vào Chủ nhật hàng tuần từ 2:00 - 4:00 sáng để đảm bảo hiệu suất tốt nhất.",
+        "content": "Để đảm bảo server luôn hoạt động ổn định và mượt mà, chúng tôi sẽ tiến hành bảo trì định kỳ...",
+        "category": "Thông báo",
+        "date": "2025-01-01",
+        "author": "Technical Team",
+        "featured": false,
+        "tags": ["maintenance", "server", "announcement", "schedule"]
+    }
+]

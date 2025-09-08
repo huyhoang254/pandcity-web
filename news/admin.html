@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Tin tức - Panda City Admin</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 20px 50px;
+            background: var(--primary-black);
+            min-height: 100vh;
+        }
+        
+        .admin-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .admin-title {
+            font-family: var(--font-primary);
+            font-size: 2.5rem;
+            color: var(--pure-white);
+            margin-bottom: 20px;
+        }
+        
+        .news-form {
+            background: var(--secondary-black);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid var(--border-gray);
+            margin-bottom: 50px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
+            display: block;
+            color: var(--pure-white);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .form-input,
+        .form-textarea,
+        .form-select {
+            width: 100%;
+            padding: 12px 15px;
+            background: var(--dark-gray);
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+            color: var(--pure-white);
+            font-family: var(--font-secondary);
+            font-size: 1rem;
+        }
+        
+        .form-input:focus,
+        .form-textarea:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--primary-red);
+            box-shadow: 0 0 0 2px rgba(227, 30, 36, 0.2);
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .btn-submit {
+            background: var(--gradient-red);
+            color: var(--pure-white);
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .news-list {
+            background: var(--secondary-black);
+            border-radius: 15px;
+            border: 1px solid var(--border-gray);
+            overflow: hidden;
+        }
+        
+        .news-list-header {
+            background: var(--dark-gray);
+            padding: 20px 30px;
+            border-bottom: 1px solid var(--border-gray);
+        }
+        
+        .news-list-title {
+            color: var(--pure-white);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .news-item-admin {
+            padding: 25px 30px;
+            border-bottom: 1px solid var(--border-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .news-item-admin:last-child {
+            border-bottom: none;
+        }
+        
+        .news-item-info h4 {
+            color: var(--pure-white);
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+        }
+        
+        .news-item-meta {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+        
+        .news-item-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn-edit,
+        .btn-delete {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+        
+        .btn-edit {
+            background: #007bff;
+            color: white;
+        }
+        
+        .btn-edit:hover {
+            background: #0056b3;
+        }
+        
+        .btn-delete {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .btn-delete:hover {
+            background: #c82333;
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .news-item-admin {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">🐼</span>
+                <span class="logo-text">PANDA CITY ADMIN</span>
+            </div>
+            <div class="nav-menu">
+                <a href="../index.html" class="nav-link">Về trang chủ</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1 class="admin-title">Quản lý Tin tức</h1>
+            <p style="color: var(--text-gray);">Thêm, chỉnh sửa và quản lý tin tức cho Panda City</p>
+        </div>
+
+        <!-- Add News Form -->
+        <form class="news-form" id="news-form">
+            <h3 style="color: var(--pure-white); margin-bottom: 30px; font-size: 1.5rem;">Thêm tin tức mới</h3>
+            
+            <div class="form-group">
+                <label class="form-label" for="news-title">Tiêu đề</label>
+                <input type="text" id="news-title" class="form-input" placeholder="Nhập tiêu đề tin tức..." required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label" for="news-excerpt">Mô tả ngắn</label>
+                <textarea id="news-excerpt" class="form-textarea" placeholder="Nhập mô tả ngắn..." required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label" for="news-content">Nội dung</label>
+                <textarea id="news-content" class="form-textarea" style="min-height: 200px;" placeholder="Nhập nội dung chi tiết..." required></textarea>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label" for="news-category">Danh mục</label>
+                    <select id="news-category" class="form-select" required>
+                        <option value="">Chọn danh mục</option>
+                        <option value="Tin tức">Tin tức</option>
+                        <option value="Cập nhật">Cập nhật</option>
+                        <option value="Sự kiện">Sự kiện</option>
+                        <option value="Hướng dẫn">Hướng dẫn</option>
+                        <option value="Cuộc thi">Cuộc thi</option>
+                        <option value="Thông báo">Thông báo</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="news-author">Tác giả</label>
+                    <input type="text" id="news-author" class="form-input" placeholder="Nhập tên tác giả..." required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label" for="news-tags">Tags (phân cách bằng dấu phẩy)</label>
+                <input type="text" id="news-tags" class="form-input" placeholder="update, event, guide...">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">
+                    <input type="checkbox" id="news-featured" style="margin-right: 10px;">
+                    Tin tức nổi bật
+                </label>
+            </div>
+            
+            <button type="submit" class="btn-submit">
+                <i class="fas fa-plus"></i> Thêm tin tức
+            </button>
+        </form>
+
+        <!-- News List -->
+        <div class="news-list">
+            <div class="news-list-header">
+                <h3 class="news-list-title">Danh sách tin tức</h3>
+            </div>
+            <div id="news-list-container">
+                <!-- News items will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let newsData = [];
+        let editingNewsId = null;
+
+        // Load existing news data
+        async function loadNewsData() {
+            try {
+                const response = await fetch('./news-data.json');
+                newsData = await response.json();
+                displayNewsList();
+            } catch (error) {
+                console.error('Error loading news data:', error);
+                newsData = [];
+                displayNewsList();
+            }
+        }
+
+        // Display news list
+        function displayNewsList() {
+            const container = document.getElementById('news-list-container');
+            container.innerHTML = '';
+
+            if (newsData.length === 0) {
+                container.innerHTML = `
+                    <div style="padding: 40px; text-align: center; color: var(--text-gray);">
+                        <i class="fas fa-newspaper" style="font-size: 3rem; margin-bottom: 20px; opacity: 0.5;"></i>
+                        <p>Chưa có tin tức nào. Hãy thêm tin tức đầu tiên!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            newsData.forEach(news => {
+                const newsElement = document.createElement('div');
+                newsElement.className = 'news-item-admin';
+                newsElement.innerHTML = `
+                    <div class="news-item-info">
+                        <h4>${news.title}</h4>
+                        <div class="news-item-meta">
+                            <span style="color: var(--primary-red);">${news.category}</span> • 
+                            ${formatDate(news.date)} • 
+                            ${news.author}
+                            ${news.featured ? ' • <span style="color: gold;">★ Nổi bật</span>' : ''}
+                        </div>
+                    </div>
+                    <div class="news-item-actions">
+                        <button class="btn-edit" onclick="editNews(${news.id})">
+                            <i class="fas fa-edit"></i> Sửa
+                        </button>
+                        <button class="btn-delete" onclick="deleteNews(${news.id})">
+                            <i class="fas fa-trash"></i> Xóa
+                        </button>
+                    </div>
+                `;
+                container.appendChild(newsElement);
+            });
+        }
+
+        // Format date
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('vi-VN', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        // Add new news
+        document.getElementById('news-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                title: document.getElementById('news-title').value,
+                excerpt: document.getElementById('news-excerpt').value,
+                content: document.getElementById('news-content').value,
+                category: document.getElementById('news-category').value,
+                author: document.getElementById('news-author').value,
+                tags: document.getElementById('news-tags').value.split(',').map(tag => tag.trim()).filter(tag => tag),
+                featured: document.getElementById('news-featured').checked,
+                date: new Date().toISOString().split('T')[0]
+            };
+
+            if (editingNewsId) {
+                // Update existing news
+                const newsIndex = newsData.findIndex(news => news.id === editingNewsId);
+                if (newsIndex !== -1) {
+                    newsData[newsIndex] = { ...newsData[newsIndex], ...formData };
+                }
+                editingNewsId = null;
+                document.querySelector('.btn-submit').innerHTML = '<i class="fas fa-plus"></i> Thêm tin tức';
+            } else {
+                // Add new news
+                const newId = Math.max(...newsData.map(news => news.id), 0) + 1;
+                formData.id = newId;
+                newsData.unshift(formData);
+            }
+
+            saveNewsData();
+            displayNewsList();
+            document.getElementById('news-form').reset();
+            
+            alert('Tin tức đã được lưu thành công!');
+        });
+
+        // Edit news
+        function editNews(id) {
+            const news = newsData.find(item => item.id === id);
+            if (!news) return;
+
+            document.getElementById('news-title').value = news.title;
+            document.getElementById('news-excerpt').value = news.excerpt;
+            document.getElementById('news-content').value = news.content;
+            document.getElementById('news-category').value = news.category;
+            document.getElementById('news-author').value = news.author;
+            document.getElementById('news-tags').value = news.tags ? news.tags.join(', ') : '';
+            document.getElementById('news-featured').checked = news.featured || false;
+
+            editingNewsId = id;
+            document.querySelector('.btn-submit').innerHTML = '<i class="fas fa-save"></i> Cập nhật tin tức';
+            
+            // Scroll to form
+            document.getElementById('news-form').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Delete news
+        function deleteNews(id) {
+            if (confirm('Bạn có chắc chắn muốn xóa tin tức này?')) {
+                newsData = newsData.filter(news => news.id !== id);
+                saveNewsData();
+                displayNewsList();
+                alert('Tin tức đã được xóa!');
+            }
+        }
+
+        // Save news data (in a real application, this would save to a database)
+        function saveNewsData() {
+            localStorage.setItem('pandacity_news', JSON.stringify(newsData));
+            console.log('News data saved to localStorage');
+        }
+
+        // Load news data on page load
+        window.addEventListener('load', function() {
+            // Try to load from localStorage first
+            const savedData = localStorage.getItem('pandacity_news');
+            if (savedData) {
+                newsData = JSON.parse(savedData);
+                displayNewsList();
+            } else {
+                loadNewsData();
+            }
+        });
+    </script>
+</body>
+</html>
